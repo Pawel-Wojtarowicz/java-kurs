@@ -2,7 +2,6 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.function.DoubleToIntFunction;
 import java.util.stream.Stream;
 
 public class BoardGame {
@@ -20,9 +19,6 @@ public class BoardGame {
         this.maxPlayers = maxPlayers;
     }
 
-    public double getRating() {
-        return rating;
-    }
 
     public BigDecimal getPrice() {
         return price;
@@ -75,7 +71,6 @@ public class BoardGame {
         Comparator<BoardGame> comparator = Comparator.comparing(BoardGame::getPrice);
         BoardGame price = games.stream().max(comparator).get();
         System.out.println(price);
-
 
     }
 }
