@@ -2,6 +2,9 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.BinaryOperator;
+import java.util.function.DoubleToIntFunction;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class BoardGame {
@@ -19,6 +22,9 @@ public class BoardGame {
         this.maxPlayers = maxPlayers;
     }
 
+    public String getName() {
+        return name;
+    }
 
     public BigDecimal getPrice() {
         return price;
@@ -42,7 +48,7 @@ public class BoardGame {
                 new BoardGame("Codenames", 7.82, new BigDecimal("64.95"), 2, 8),
                 new BoardGame("Puerto Rico", 8.07, new BigDecimal("149.99"), 2, 5),
                 new BoardGame("Terra Mystica", 8.26, new BigDecimal("252.99"), 2, 5),
-                new BoardGame("Scythe", 8.3, new BigDecimal("314.95"), 1, 5),
+                new BoardGame("Scythe", 8.3, new BigDecimal("214.95"), 1, 5),
                 new BoardGame("Power Grid", 7.92, new BigDecimal("145"), 2, 6),
                 new BoardGame("7 Wonders Duel", 8.15, new BigDecimal("109.95"), 2, 2),
                 new BoardGame("Dominion: Intrigue", 7.77, new BigDecimal("159.95"), 2, 4),
@@ -71,6 +77,17 @@ public class BoardGame {
         Comparator<BoardGame> comparator = Comparator.comparing(BoardGame::getPrice);
         BoardGame price = games.stream().max(comparator).get();
         System.out.println(price);
+
+        System.out.println("\n#### FILTERED by NAME Length ####");
+        Comparator<BoardGame> comparator1 = Comparator.comparingInt(x -> x.getName().length());
+        BoardGame NameLength = games.stream()
+                .reduce(BinaryOperator.minBy(comparator1)).get();
+        System.out.println(NameLength);
+
+        System.out.println("\n########");
+        games.stream()
+                .map(x -> x.getName() + " " + x.getPrice())
+                .forEach(System.out::println);
 
     }
 }

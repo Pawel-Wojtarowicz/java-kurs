@@ -15,7 +15,7 @@ public class StatefullOperation {
     }
 
     public static void main(String[] args) {
-
+/////////////////////////////////////////////
         for (int i = 0; i < 3; i++) {
             Stream<Integer> numbers = Stream.of(1, 2, 3, 1, 2, 3, 1, 2, 3);
             StatefullOperation requriements = new StatefullOperation();
@@ -24,12 +24,11 @@ public class StatefullOperation {
                     .mapToInt(n -> n.intValue()).sum();
             System.out.println(sum);
         }
-
+/////////////////////////////////////////////
         System.out.println("IntStream: ");
         IntStream.range(1950, 2150)
                 .filter(y -> (y % 4 == 0 && y % 100 != 0) || y % 400 == 0)
                 .forEach(x -> System.out.print(x + ", "));
-
 
         System.out.println("LeapYear: ");
         List<Integer> list = new ArrayList<>();
